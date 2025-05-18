@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { 
-  View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity, 
-  ScrollView 
+import {
+  View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity,
+  ScrollView
 } from 'react-native';
 
 const HomeScreen = ({ navigation }: { navigation: any }) => {
@@ -13,22 +13,33 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.topBar}>
-        <Text style={styles.homeText}>Home</Text>
+      {/* Updated Top Bar with Back Button and Heading */}
+      <View style={styles.headerRow}>
+        {/* Optional: Only show if Home is not the first screen */}
+        <TouchableOpacity onPress={() => navigation.navigate('Welcome')}>
+          <Image
+            source={require('../assets/images/backerrow.png')}
+            style={styles.backIcon}
+          />
+        </TouchableOpacity>
+        <Text style={styles.heading}>Home</Text>
       </View>
+
+      <Text style={styles.subHeading}>Explore and Learn with Interactive Content</Text>
+
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.imageContainer}>
           <TouchableOpacity style={styles.imageWrapper} onPress={() => handleNavigation('Books')}>
-            <Image 
-              source={require('../assets/images/bookimage3d.png')} 
+            <Image
+              source={require('../assets/images/bookimage3d.png')}
               style={styles.image}
             />
             <Text style={styles.imageText}>Books</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.imageWrapper} onPress={() => handleNavigation('ARVR')}>
-            <Image 
-              source={require('../assets/images/Fruits.png')} 
+            <Image
+              source={require('../assets/images/Fruits.png')}
               style={styles.image}
             />
             <Text style={styles.imageText}>Fruits</Text>
@@ -37,24 +48,24 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
 
         <View style={styles.imageContainer}>
           <TouchableOpacity style={styles.imageWrapper} onPress={() => handleNavigation('TeacherLibrary')}>
-            <Image 
-              source={require('../assets/images/solarSystem.png')} 
+            <Image
+              source={require('../assets/images/solarSystem.png')}
               style={styles.image}
             />
-            <Text style={styles.imageText}>Solar System </Text>
+            <Text style={styles.imageText}>Solar System</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.imageWrapper} onPress={() => handleNavigation('Class')}>
-            <Image 
-              source={require('../assets/images/vegetables.png')} 
+            <Image
+              source={require('../assets/images/vegetables.png')}
               style={styles.image}
             />
-            <Text style={styles.imageText}>Vegetables </Text>
+            <Text style={styles.imageText}>Vegetables</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.imageWrapper} onPress={() => handleNavigation('VisionaryTales')}>
-            <Image 
-              source={require('../assets/images/imagesteacherfemale.png')} 
+            <Image
+              source={require('../assets/images/imagesteacherfemale.png')}
               style={styles.image}
             />
             <Text style={styles.imageText}>Others</Text>
@@ -66,32 +77,50 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: 'rgb(235, 235, 235)' },
-  topBar: {
+  container: { flex: 1, backgroundColor: '#f0f4f7' },
+
+  headerRow: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    height: 25,
-    backgroundColor: 'rgba(250, 221, 255, 0)',
+    alignItems: 'center',
+    paddingHorizontal: 5,
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: '#fff',
     elevation: 5,
-    borderBottomStartRadius: 15,
-    borderBottomEndRadius: 15,
   },
-  homeText: { fontSize: 18, fontWeight: 'bold', color: 'black', marginLeft: 10 },
+  backIcon: {
+    width: 28,
+    height: 24,
+    marginRight: 10,
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  subHeading: {
+    fontSize: 16,
+    color: 'black',
+    marginTop: 10,
+    marginLeft: 20,
+    marginBottom: 10,
+  },
+
   scrollContainer: { alignItems: 'center', paddingBottom: 10 },
+
   imageContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    marginTop: 50,
+    marginTop: 30,
     gap: 20,
   },
   imageWrapper: { alignItems: 'center' },
   image: {
-    width: 160,
-    height: 160,
+    width: 190,
+    height: 190,
     borderRadius: 30,
     resizeMode: 'contain',
     backgroundColor: 'white',
